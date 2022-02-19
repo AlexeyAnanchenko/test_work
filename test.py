@@ -55,7 +55,7 @@ def num_less_value(value):
     print(count)
 
 
-def num_days_of_week_by_abbriviated_name(day):
+def num_days_of_week_by_serial_num_one(num):
     """Функция считает количество строк в массиве по указанному
     cокращенному названию дня недели + "пасхалка" ;)
     """
@@ -67,12 +67,12 @@ def num_days_of_week_by_abbriviated_name(day):
         except Exception as error:
             print(error)
         else:
-            if datetime.timetuple(datetime_object)[6] == 1:
+            if datetime_object.weekday() == num:
                 count += 1
     print(count)
 
 
-def num_days_of_week_by_serial_num(serial_num):
+def num_days_of_week_by_serial_num_two(serial_num):
     """Функция считает кол-во строк в массиве """
     data = get_data(5)
     data = [datetime.strptime(i, '%Y-%m-%d %H:%M:%S.%f') for i in data]
@@ -101,6 +101,6 @@ def num_last_days_of_week_in_month(num_day):
 num_of_even_numbers()
 num_of_simple_numbers()
 num_less_value(0.5)
-num_days_of_week_by_abbriviated_name('Tue')
-num_days_of_week_by_serial_num(1)
+num_days_of_week_by_serial_num_one(1)
+num_days_of_week_by_serial_num_two(1)
 num_last_days_of_week_in_month(1)
