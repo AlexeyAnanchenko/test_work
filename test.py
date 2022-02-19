@@ -47,8 +47,7 @@ def num_less_value(value):
     значения
     """
     data = get_data(3)
-    data = [num.replace(' ', '') for num in data]
-    data = [float(num.replace(',', '.')) for num in data]
+    data = [float(num.replace(',', '.').replace(' ', '')) for num in data]
     count = 0
     for num in data:
         if num < value:
@@ -63,14 +62,13 @@ def num_days_of_week_by_abbriviated_name(day):
     data = get_data(4)
     count = 0
     for i in data:
-        # День недели прописан в первых 3-х символах
-        if i[:3] == day:
-            count += 1
-        if i[len(i) - 1] == 'о':
-            print(
-                'Согласно просьбе отмечаю в решении строчку со следующим'
-                f'содержанием: {i}'
-            )
+        try:
+            datetime_object = datetime.strptime(i, '%a %b %d %H:%M:%S %Y')
+        except Exception as error:
+            print(error)
+        else:
+            if datetime.timetuple(datetime_object)[6] == 1:
+                count += 1
     print(count)
 
 
